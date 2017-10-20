@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define a 4
+#define b 4
+
+
+
+int main()
+{
+    int array[a][b];
+    int c,d;
+    printf("Please enter your array.\n");
+    for(c=0;c<a;c++)
+        for(d=0;d<b;d++)
+        scanf("%d",&array[c][d]);
+    printf("Now we start transpose\n");
+    int e=0,f=0;
+    while (e<=f&&e<=a-1)
+    {
+        f=0;
+        e++;
+        while (e>f)
+        {
+             int temp;
+             temp=array[e][f];
+             array[e][f]=array[f][e];
+             array[f][e]=temp;
+             f++;
+        }
+
+    }
+    printf ("The new array  is :\n");
+    int g,h;
+    for (g=0;g<a;g++)
+        {
+            for(h=0;h<b;h++)
+            printf("%d  ",array[g][h]);
+            printf("\n");
+        }
+    return 0;
+
+}

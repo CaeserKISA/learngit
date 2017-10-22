@@ -15,7 +15,7 @@ int main()
         scanf("%d",&array[c][d]);
     printf("Now we start transpose\n");
     int e=0,f=0;
-    while (e<=f&&e<=a-1)
+    while (e<=f&&e<a-1)
     {
         f=0;
         e++;

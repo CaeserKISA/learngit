@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define a 4
+#define b 4
+
+int main()
+{
+    int array[a][b];
+    int c,d,e,f,h,i,temp;
+    printf("Please enter your array.\n");
+    for(c=0;c<a;c++)
+        for(d=0;d<b;d++)
+        scanf("%d",&array[c][d]);
+    int *arry;
+    arry=&array[0][0];
+    for(e=0;e<16;e++)
+        for(f=0;f+e<15;f++)
+    {
+        if(*(arry+f)<*(arry+1+f))
+        {temp=*(arry+f);
+        *(arry+f)=*(arry+1+f);
+        *(arry+1+f)=temp;}
+    }
+     printf ("The new array  is :\n");
+    for (i=0;i<a;i++)
+        {
+            for(h=0;h<b;h++)
+            printf("%d  ",array[i][h]);
+            printf("\n");
+        }
+    return 0;
+
+}

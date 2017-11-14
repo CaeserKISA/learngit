@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+    char str[100],*p;
+    gets(str);
+    p=str;
+    int i=0,j,k=0,n;
+    float ch[10]={0.0};
+    j=strlen(str);
+    while(i<j)
+    {
+        while((*(p+i)>='0'&&*(p+i)<='9')||*(p+i)=='.')
+        {
+            ch[k]=ch[k]*10+(*(p+i)-'0');
+            i++;
+            if(*(p+i)=='.')
+                {
+                    i++;
+                    n=0;
+                    while(*(p+i)>='0'&&*(p+i)<='9')
+                        {
+                            n++;
+                            ch[k]=ch[k]+(*(p+i)-'0')/pow(10,n);
+                            i++;
+                        }
+                }
+        }
+
+        k++;
+        while(*(p+i)<'0'||*(p+i)>'9')
+            i++;
+
+    }
+
+    for(i=0;i<k;i++)
+        printf("%f\t",ch[i]);
+    printf("\n%d",k);
+
+    return 0;
+}

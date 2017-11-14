@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+    char str[100],*p;
+    gets(str);
+    p=str;
+    int i=0,j,k=0,ch[10]={0};
+    j=strlen(str);
+    while(i<j)
+    {
+        while((*(p+i)>='0'&&*(p+i)<='9'))
+        {
+            ch[k]=ch[k]*10+(*(p+i)-'0');
+            i++;
+        }
+        k++;
+        while(*(p+i)<'0'||*(p+i)>'9')
+            i++;
+    }
+
+    for(i=0;i<k;i++)
+        printf("%d\t",ch[i]);
+    return 0;
+}

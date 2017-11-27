@@ -1,0 +1,77 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define SIZE 5
+#define OVERFLOW 0
+typedef struct
+{
+    int *base;
+    int *top;
+    int stacksize;
+}stack;
+int Init(stack &S);
+int push(stack &S,int e);
+int pop(stack &S,int &e);
+int gettop(stack S,int e);
+
+
+int main()
+{
+    int i,j;
+    stack S;
+    Init(S);
+    for(i=0;i<SIZE-1;i++)
+    {
+        scanf("%d",&j);
+        push(S,j);
+    }
+    int e=0;
+    pop(S,e);
+    printf("删除的栈顶元素为：%d\n",e);
+    printf("删除后的栈顶元素为：%d\n",gettop(S,e));
+    free(S.base);
+    return 0;
+
+}
+
+int Init(stack &S)
+{
+    S.base=(int *)malloc(SIZE*sizeof(int));
+    if(!S.base)exit(OVERFLOW);
+    S.top=S.base;
+    S.stacksize=SIZE;
+    return 1;
+}
+
+
+int push(stack &S,int e)
+{
+    if(S.top-S.base>=S.stacksize)
+    {
+        S.base=(int *)realloc(S.base,(S.stacksize +SIZE)*sizeof(int));
+        if(!S.base)exit(OVERFLOW);
+        S.top=S.base+S.stacksize;
+        S.stacksize+=SIZE;
+    }
+    *S.top++=e;
+    return 1;
+}
+
+
+int pop(stack &S,int &e)
+{
+    if(S.top==S.base)
+        return 0;
+    e=*--S.top;
+    return 1;
+}
+
+
+int gettop(stack S,int e)
+{
+    if(S.top==S.base)
+        return 0;
+    e=*(S.top-1);
+    return e;
+}

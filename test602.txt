@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Number{
+    int num;
+    struct Number *next;
+}number;
+
+int main()
+{
+    number * head=NULL;
+    number *p,*k,*r;
+    int i;
+    printf("Please enter the number(q to quit):\n");
+    while(scanf("%d",&i)!=0)
+    {
+        p=(number *)malloc(sizeof(number));
+        if(p==NULL)
+        {
+            printf("no enough memory");
+            exit(1);
+        }
+        p->num=i;
+        if(head==NULL)
+        {
+            head=p;
+            k=p;
+        }
+        else
+        {
+            k->next=p;
+            k=p;
+        }
+    }
+    k->next=NULL;
+    printf("ok\n");
+
+    p=head;
+    k=head->next;
+    while(k!=NULL)
+    {
+        r=k->next;
+        k->next=p;
+        p=k;
+        k=r;
+    }
+	
+    head->next=NULL;
+    head=p;
+	
+    while(p!=NULL)
+    {
+        printf("%d",p->num);
+        p=p->next;
+    }
+
+    p=head;
+    while(k!=NULL)
+    {
+        p=k;
+        k=p->next;
+        free(p);
+    }
+    printf("\nbye");
+    return 0;
+}

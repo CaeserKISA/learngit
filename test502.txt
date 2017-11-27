@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdarg.h>
+#define SIZE 10
+typedef struct stu{
+    int id;
+    double grades;
+}student;
+void struct_sort(student*st);
+int main()
+{
+    student st[SIZE] ;
+    int i;
+    for(i=0;i<SIZE;i++)
+        scanf("%d,%lf",&st[i].id,&st[i].grades);
+    struct_sort(st);
+    for(i=0;i<SIZE;i++)
+        printf("%4d %lf\n",st[i].id,st[i].grades);
+    return 0;
+}
+void struct_sort(student *st)
+{
+    int i,j;
+    for(i=0;i<SIZE;i++)
+        for(j=0;j<SIZE-1-i;j++)
+        {
+            if(st[j].grades<st[j+1].grades)
+            {
+                student temp;
+                temp=st[j];
+                st[j]=st[j+1];
+                st[j+1]=temp;
+            }
+        }
+
+
+}
